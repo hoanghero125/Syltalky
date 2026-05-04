@@ -1,0 +1,9 @@
+[submodule "Syltalky_FE"]
+	path = Syltalky_FE
+	url = git@github.com:hoanghero125/Syltalky_FE.git
+[submodule "Syltalky_BE"]
+	path = Syltalky_BE
+	url = git@github.com:hoanghero125/Syltalky_BE.git
+[submodule "Syltalky_API"]
+	path = Syltalky_API
+	url = git@github.com:hoanghero125/Syltalky_API.git
