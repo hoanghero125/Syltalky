@@ -6,7 +6,7 @@ Real-time accessible video conferencing for Vietnamese speakers — with AI-powe
 
 ## What it is
 
-Syltalky is a full-stack video conferencing platform designed around accessibility. Every meeting is transcribed live in Vietnamese, participants can speak through a cloned or designed AI voice, and sign language video is translated automatically. After the meeting ends, an LLM-generated summary (in Vietnamese Markdown) is created from the transcript and delivered as a notification.
+Syltalky is a full-stack video conferencing platform designed around accessibility. Every meeting is transcribed live in Vietnamese, participants can speak through a cloned or designed AI voice, and sign language video is translated automatically. After the meeting ends, an LLM-generated summary (in Vietnamese Markdown) is created from the transcript.
 
 ---
 
@@ -15,7 +15,7 @@ Syltalky is a full-stack video conferencing platform designed around accessibili
 | Repo | Stack | Purpose |
 |---|---|---|
 | [`Syltalky_API/`](https://github.com/hoanghero125/Syltalky_API) | Python · FastAPI · CUDA | AI services: STT, TTS, sign language translation |
-| [`Syltalky_BE/`](https://github.com/hoanghero125/Syltalky_BE) | Python · FastAPI · PostgreSQL | Backend: auth, meetings, voice profiles, notifications |
+| [`Syltalky_BE/`](https://github.com/hoanghero125/Syltalky_BE) | Python · FastAPI · PostgreSQL | Backend: auth, meetings, voice profiles, real-time captions |
 | [`Syltalky_FE/`](https://github.com/hoanghero125/Syltalky_FE) | React · Vite · LiveKit | Web app: all user-facing screens |
 
 Each repo is its own git repository with its own README, commit history, and deployment lifecycle.
@@ -54,10 +54,10 @@ Users can record or upload a 5–15s audio clip to clone their voice. The backen
 Upload an ASL video from the meeting interface. The AI API extracts pose keypoints with RTMPose, runs them through Uni-Sign (ASL → English), and translates the result to Vietnamese with EnViT5.
 
 ### Meeting history & AI summaries
-When a meeting ends, a post-processing job builds a full transcript from the saved captions, summarises it using the configured LLM, and pushes a `summary_ready` notification to the host via WebSocket. The Library screen shows all past meetings with their summaries and transcripts.
+When a meeting ends, a post-processing job builds a full transcript from the saved captions and summarises it using the configured LLM. The Library screen shows all past meetings with their summaries and transcripts.
 
 ### Meeting extras
-Live meetings also support: pinned messages, polls (single/multiple choice), collaborative notes (Tiptap + Yjs CRDT), co-host promotion, a waiting room, and an AI chat assistant powered by a configurable LLM.
+Live meetings also support: pinned messages, polls (single/multiple choice), collaborative notes (Tiptap + Yjs CRDT), co-host promotion, waiting room with approve-all, and an AI chat assistant powered by a configurable LLM.
 
 ---
 
@@ -90,10 +90,10 @@ Both Docker Compose stacks (`Syltalky_API` and `Syltalky_BE`) run on the same ma
 |---|---|
 | 1 | Project scaffold — FastAPI, Vite, Alembic, Docker Compose |
 | 2 | Auth — register, login, JWT, email verify, forgot/reset password |
-| 3 | User profile, voice config, Settings modal |gu
+| 3 | User profile, voice config, Settings modal |
 | 4 | Voice clone — upload/record, waveform trim, STT→TTS pipeline |
 | 5 | Meetings core — create, join, LiveKit, device check, meeting room grid |
 | 6 | Real-time captions — audio tap, WebSocket STT, subtitle overlay |
 | 7 | TTS in meeting — text input, voice synthesis, audio broadcast |
-| 8 | Post-processing — LLM summary, notifications, Library |
-| 9 | Meeting extras — pins, polls, notes, co-host, waiting room, AI chat |
+| 8 | Post-processing — LLM summary, Library |
+| 9 | Meeting extras — pins, polls, notes, co-host, waiting room with approve-all, AI chat |

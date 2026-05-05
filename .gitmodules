@@ -1,9 +1,12 @@
 [submodule "Syltalky_FE"]
 	path = Syltalky_FE
 	url = git@github.com:hoanghero125/Syltalky_FE.git
+	branch = main
 [submodule "Syltalky_BE"]
 	path = Syltalky_BE
 	url = git@github.com:hoanghero125/Syltalky_BE.git
+	branch = main
 [submodule "Syltalky_API"]
 	path = Syltalky_API
 	url = git@github.com:hoanghero125/Syltalky_API.git
+	branch = main
